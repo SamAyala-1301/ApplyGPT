@@ -1,0 +1,24 @@
+Amazon WWR&R is comprised of business, product, operational, program, software engineering and data teams that manage the life of a returned or damaged product from a customer to the warehouse and on to its next best use. Our work is broad and deep: we train machine learning models to automate routing and find signals to optimize re-use; we invent new channels to give products a second life; we develop world-class product support to help customers love what they buy; we pilot smarter product evaluations; we work from the customer backward to find ways to make the return experience remarkably delightful and easy; and we do it all while scrutinizing our business with laser focus.
+
+WWR&R data engineering team at Amazon Hyderabad Development Center is an agile team whose charter is to deliver the next generation of Reverse Logistics data lake platform. As a member of this team, your mission will be to support massively scalable, distributed data warehousing, querying, reporting and decision-support system.
+
+We support a fast-paced environment where each day brings new challenges and opportunities. As a Support Engineer, you will play a pivotal role in ensuring the stability, compliance, and operational excellence of our enterprise Data Warehouse (DW) environment. In this role, you will be responsible for monitoring and maintaining production data pipelines, proactively identifying and resolving issues that impact data quality, availability, or timeliness. You’ll collaborate closely with data engineers and cross-functional teams to troubleshoot incidents, implement scalable solutions, and enhance the overall resilience of our data infrastructure. A key aspect of this role involves supporting our data compliance and governance initiatives, ensuring systems align with internal policies and external regulatory standards such as GDPR. You will help enforce access controls, manage data retention policies, and support audit readiness through strong logging and monitoring practices. You’ll also lead efforts to automate manual support processes, improving team efficiency and reducing operational risk. Additionally, you will be responsible for maintaining clear, up-to-date documentation and runbooks for operational procedures and issue resolution, promoting consistency and knowledge sharing across the team. We’re looking for a self-motivated, quick-learning team player with a strong sense of ownership and a ‘can-do’ attitude, someone who thrives in a dynamic, high-impact environment and is eager to make meaningful contributions to our data operations.
+
+Basic Qualifications
+
+ 2+ years of software development, or 2+ years of technical support experience
+ Bachelor's degree in engineering or equivalent
+ Experience troubleshooting and debugging technical systems
+ Experience scripting in modern program languages
+ Experience with SQL databases (querying and analyzing)
+
+Preferred Qualifications
+
+ Good to have experience with AWS technologies stack including Redshift, RDS, S3, EMR or similar solutions build around Hive/Spark etc
+ Good to have experience with reporting tools like Tableau, OBIEE or other BI packages.
+ Knowledge of software engineering best practices across the development lifecycle is a plus
+
+Our inclusive culture empowers Amazonians to deliver the best results for our customers. If you have a disability and need a workplace accommodation or adjustment during the application and hiring process, including support for the interview or onboarding process, please visit https://amazon.jobs/content/en/how-we-hire/accommodations for more information. If the country/region you’re applying in isn’t listed, please contact your Recruiting Partner.
+
+
+Company - ADCI HYD 13 SEZ
