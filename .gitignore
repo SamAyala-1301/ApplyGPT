@@ -1,9 +1,5 @@
 applygpt-venv/
-
-# System & editor files
-.DS_Store
-.env
-.private/
-__pycache__/
-*.pyc
 applygpt-env/
+*.DS_Store
+__pycache__/
+.env
