@@ -6,3 +6,4 @@ applygpt-venv/
 .private/
 __pycache__/
 *.pyc
+applygpt-env/
