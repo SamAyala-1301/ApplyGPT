@@ -28,7 +28,7 @@ if st.sidebar.button("Search Now"):
     if scraped_jobs:
         st.session_state["job_list"] = scraped_jobs
         st.success(f"✅ Found {len(scraped_jobs)} jobs for '{search_query}'")
-        st.rerun()
+        st.experimental_rerun()
     else:
         st.warning(f"🔒 Naukri is not allowing scraping for '{search_query}'. Please try a more specific role.")
 
@@ -236,20 +236,24 @@ elif selected_job:
     jd_source_text = selected_job["jd"]
     enhance_mode = "job"
 
+st.subheader("✍️ Enhance My Resume")
+st.info("🚧 This feature is coming soon. Stay tuned for updates!")
+
+"""
 if uploaded_file:
     if jd_source_text:
         st.subheader("✍️ Enhance My Resume")
         if st.button("Suggest Resume Lines"):
             with st.spinner("Crafting smart resume lines..."):
                 enhancement_prompt = f"""
-You are a helpful resume assistant. Given the following job description, suggest 3 impactful bullet points that I can add to my resume to match this role better.
+#You are a helpful resume assistant. Given the following job description, suggest 3 impactful bullet points that I can add to my resume to match this role better.
 
-Make them achievement-driven, specific, and skill-oriented.
+#Make them achievement-driven, specific, and skill-oriented.
 
-Job Description:
-\"\"\"
-{jd_source_text}
-\"\"\"
+#Job Description:
+#\"\"\"
+#{jd_source_text}
+#\"\"\"
                 """.strip()
                 suggestions = query_llm(enhancement_prompt, use_local=False)
                 st.markdown("### ✍️ Suggested Lines:")
@@ -263,6 +267,7 @@ Job Description:
                 })
     else:
         st.info("Paste a job description or select a job from the list to enable suggestions.")
+"""
 
 with st.expander("🧠 Prompt + LLM Response Log"):
     if st.session_state.llm_log:

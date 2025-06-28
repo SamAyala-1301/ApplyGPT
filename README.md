@@ -133,6 +133,18 @@ All models, dependencies, and keys are cloud-compatible.
 
 ---
 
+---
+
+## ⚠️ Known Limitation
+
+While ApplyGPT v2.0 is feature-complete for local usage, full functionality involving LLM-enhanced suggestions via Mistral (or other HF-hosted models) could not be enabled due to HuggingFace API restrictions and token limitations.
+
+We are currently exploring integration with **OpenRouter.ai** as an alternative LLM backend for truly open-source, cost-effective deployment.
+
+Until this is resolved, resume enhancement features may be **partially disabled or show placeholder messages** on deployed environments.
+
+---
+
 ## 📬 Contact
 
 Built by **Sai Sampath Ayalasomayajula**  
