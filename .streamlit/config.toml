@@ -1,0 +1,14 @@
+[theme]
+primaryColor = "#3A86FF"  # Blue tone for trust/professionalism
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F6F6F6"
+textColor = "#262730"
+font = "sans serif"
+
+[ui]
+page_title = "ApplyGPT – AI Resume Matcher"
+layout = "wide"
+initial_sidebar_state = "expanded"
+
+[server]
+headless = true
