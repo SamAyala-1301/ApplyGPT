@@ -254,8 +254,8 @@ if uploaded_file:
 #\"\"\"
 #{jd_source_text}
 #\"\"\"
-                """.strip()
-                suggestions = query_llm(enhancement_prompt, use_local=False)
+                #""".strip()
+"""suggestions = query_llm(enhancement_prompt, use_local=False)
                 st.markdown("### ✍️ Suggested Lines:")
                 st.markdown(suggestions)
                 st.code(suggestions, language="markdown")
