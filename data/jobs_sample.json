@@ -1,0 +1,23 @@
+[
+  {
+    "title": "L3 Support Engineer - Cloud & APIs",
+    "company": "ZenCloud",
+    "location": "Bangalore",
+    "link": "https://naukri.com/viewjob?id=101",
+    "jd": "Looking for experienced support engineers skilled in Linux, Python, REST APIs, and SQL. You will triage production issues and work with cloud tools to maintain high SLAs."
+  },
+  {
+    "title": "Technical Support Analyst - Fintech",
+    "company": "FinServe",
+    "location": "Mumbai",
+    "link": "https://naukri.com/viewjob?id=102",
+    "jd": "Seeking support engineers with knowledge of SQL, monitoring tools, and automation. Preferably from finance background with hands-on in Splunk, ServiceNow, and Python scripts."
+  },
+  {
+    "title": "Application Support Specialist - SaaS",
+    "company": "ScaleX",
+    "location": "Remote",
+    "link": "https://naukri.com/viewjob?id=103",
+    "jd": "Support and enhance our SaaS platform using Bash scripting, error log analysis, and client-side debugging. Familiarity with Git, Linux systems, and L2/L3 support workflows required."
+  }
+]

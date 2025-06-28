@@ -60,8 +60,12 @@ def match_score(resume_text: str, jd_text: str) -> dict[str, any]:
     }
 
 def semantic_match_score(resume_text: str, jd_text: str) -> float:
-    resume_emb = model.encode(resume_text, convert_to_tensor=True)
-    jd_emb = model.encode(jd_text, convert_to_tensor=True)
+    resume_clean = resume_text.strip().lower()
+    jd_clean = jd_text.strip().lower()
+
+    resume_emb = model.encode(resume_clean, convert_to_tensor=True)
+    jd_emb = model.encode(jd_clean, convert_to_tensor=True)
+
     score = util.cos_sim(resume_emb, jd_emb).item()
     return round(score * 10, 2)
 
