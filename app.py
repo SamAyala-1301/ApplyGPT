@@ -35,11 +35,10 @@ if st.sidebar.button("Search Now"):
 # Optional: File uploader to upload job JSON
 import json
 uploaded_jobs_file = st.sidebar.file_uploader("Or upload jobs JSON manually", type=["json"])
-if uploaded_jobs_file:
+if uploaded_jobs_file and "job_list" not in st.session_state:
     job_list = json.load(uploaded_jobs_file)
     st.session_state["job_list"] = job_list
-    st.sidebar.success("Uploaded job data successfully.")
-    st.rerun()
+    st.sidebar.success("✅ Job data loaded.")
 
 
 def display_selected_job(selected_job):
@@ -97,7 +96,7 @@ Job Description:
 \"\"\"
                 """.strip()
 
-                suggestions = query_llm(enhancement_prompt, use_local=True)
+                suggestions = query_llm(enhancement_prompt, use_hf=True)
                 st.markdown("### ✍️ Suggested Lines:")
                 st.markdown(suggestions)
                 st.code(suggestions, language="markdown")
@@ -147,7 +146,7 @@ Job Description:
 {jd_text}
 \"\"\"
             """.strip()
-            suggestions = query_llm(enhancement_prompt, use_local=True)
+            suggestions = query_llm(enhancement_prompt, use_hf=True)
             st.markdown(f"### {job_title} at {company}")
             st.markdown(suggestions)
             st.code(suggestions, language="markdown")
@@ -222,9 +221,42 @@ else:
     st.info("📂 Upload your resume and paste JD to enable scoring.")
 
 
+
 # Resume Lines Enhancement
-if selected_job:
-    suggest_resume_lines(selected_job["jd"])
+enhance_mode = None
+jd_source_text = None
+
+if match_mode == "Paste JD Manually":
+    jd_source_text = jd_text if "jd_text" in locals() else None
+    enhance_mode = "manual"
+elif selected_job:
+    jd_source_text = selected_job["jd"]
+    enhance_mode = "job"
+
+if uploaded_file and jd_source_text:
+    st.subheader("✍️ Enhance My Resume")
+    if st.button("Suggest Resume Lines"):
+        with st.spinner("Crafting smart resume lines..."):
+            enhancement_prompt = f"""
+You are a helpful resume assistant. Given the following job description, suggest 3 impactful bullet points that I can add to my resume to match this role better.
+
+Make them achievement-driven, specific, and skill-oriented.
+
+Job Description:
+\"\"\"
+{jd_source_text}
+\"\"\"
+            """.strip()
+            suggestions = query_llm(enhancement_prompt, use_hf=True)
+            st.markdown("### ✍️ Suggested Lines:")
+            st.markdown(suggestions)
+            st.code(suggestions, language="markdown")
+            st.session_state.llm_log.append({
+                "Prompt": enhancement_prompt,
+                "LLM Output": suggestions,
+                "Job Title": selected_job["title"] if selected_job else None,
+                "Company": selected_job["company"] if selected_job else None
+            })
 
 with st.expander("🧠 Prompt + LLM Response Log"):
     if st.session_state.llm_log:
