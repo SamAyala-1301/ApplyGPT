@@ -149,7 +149,7 @@ Job Description:
 {jd_text}
 \"\"\"
             """.strip()
-            suggestions = query_llm(enhancement_prompt, use_hf=True)
+            suggestions = query_llm(enhancement_prompt, use_local=False)
             st.markdown(f"### {job_title} at {company}")
             st.markdown(suggestions)
             st.code(suggestions, language="markdown")
