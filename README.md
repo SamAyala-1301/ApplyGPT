@@ -77,9 +77,66 @@ Built by Sai Sampath Ayalasomayajula
 
 ⸻
 
-🌍 Coming Soon (v2.x Roadmap)
-	•	🧠 GPT-powered resume suggestions
-	•	🌐 Job scraping from LinkedIn/Naukri
-	•	📊 User dashboard
-	•	🛠 Deploy to Hugging Face / Render / Streamlit Cloud
+
+---
+
+# 🚀 ApplyGPT v2.0 — Feature Expansion & Intelligence Upgrade
+
+ApplyGPT v2 brings major upgrades across resume matching, LLM integration, and job intelligence features — evolving it into a smarter, more production-ready tool.
+
+---
+
+## 🔄 What's New in v2.0
+
+### 🧠 2.1 — LLM-Based Resume Enhancement
+- Integrated **LLaMA-3** (locally) and **Mistral via HuggingFace API**
+- Automatically suggests bullet points tailored to a job description
+- Bulk suggestion for multiple jobs now supported
+
+### 📂 2.2 — Multi-format Resume Upload
+- Support for `.docx`, `.pdf`, and `.txt` files
+- Backend parsing handled by `docx2txt`, `PyMuPDF`, and `python-docx`
+
+### 🔍 2.3 — Enhanced Matching Modes
+- Choose between:
+  - 📋 Manual JD input
+  - 🗃️ Bulk match against all scraped jobs
+- Clean UI toggle implemented
+
+### ✍️ 2.4 — Resume Suggestions + Matching UX
+- 2.4.1: View top matches from scraped roles
+- 2.4.2: Multi-select roles to generate LLM resume lines
+- 2.4.3: Output shown inline with job metadata
+- 2.4.4: Full **prompt + LLM response** log added to session
+
+### 🌐 2.5 — Job Scraping Integration
+- Live Naukri job scraping via `requests + BeautifulSoup`
+- Sidebar input to fetch job postings for any title
+- Fallback to `.json` upload when scraping fails
+- No sample data used unless explicitly uploaded
+
+### 🤖 2.6 — HuggingFace API LLM Integration
+- Uses `mistralai/Mistral-7B-Instruct-v0.2` from HuggingFace
+- API key handled via environment or Streamlit secrets
+- Seamless switch from local model to API deployment mode
+
+---
+
+## 📦 Deployment Ready
+
+You can now deploy ApplyGPT v2 to:
+- ✅ Streamlit Cloud
+- ✅ Hugging Face Spaces
+- ✅ Render (coming soon)
+
+All secrets, dependencies, and models are cloud-compatible.
+
+---
+
+## 🏁 Next Up (v3.0 Preview)
+
+- 🧰 SaaS-Ready Backend
+- 📈 User accounts + dashboards
+- 📤 Resume submission log + job alerts
+- 💬 GPT chat over resumes + JDs
 
