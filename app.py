@@ -81,6 +81,9 @@ def run_resume_matching(resume_text, jd_text):
 def suggest_resume_lines(jd_text):
     st.subheader("✍️ Enhance My Resume for Selected Job")
     uploaded_file = st.session_state.get("uploaded_file", None)
+    selected_job = None
+    if "job_list" in st.session_state:
+        selected_job = st.session_state.get("selected_job", None)
 
     if uploaded_file:
         if st.button("Suggest Resume Lines for This Job"):
@@ -96,15 +99,15 @@ Job Description:
 \"\"\"
                 """.strip()
 
-                suggestions = query_llm(enhancement_prompt, use_hf=True)
+                suggestions = query_llm(enhancement_prompt, use_local=False)
                 st.markdown("### ✍️ Suggested Lines:")
                 st.markdown(suggestions)
                 st.code(suggestions, language="markdown")
                 st.session_state.llm_log.append({
                     "Prompt": enhancement_prompt,
                     "LLM Output": suggestions,
-                    "Job Title": None,
-                    "Company": None
+                    "Job Title": selected_job["title"] if selected_job else None,
+                    "Company": selected_job["company"] if selected_job else None
                 })
     else:
         st.info("Upload a resume to get tailored suggestions.")
@@ -247,7 +250,7 @@ Job Description:
 {jd_source_text}
 \"\"\"
             """.strip()
-            suggestions = query_llm(enhancement_prompt, use_hf=True)
+            suggestions = query_llm(enhancement_prompt, use_local=False)
             st.markdown("### ✍️ Suggested Lines:")
             st.markdown(suggestions)
             st.code(suggestions, language="markdown")
