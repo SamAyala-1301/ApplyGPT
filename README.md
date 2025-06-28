@@ -1,142 +1,151 @@
-# ApplyGPT v1.0
+# ⚡ ApplyGPT – Intelligent Resume Matcher (v2.0)
 
-ApplyGPT is an intelligent resume–job description matcher built using Python and Streamlit. It combines keyword-based skill matching with semantic similarity (via Sentence Transformers) to evaluate how well a resume aligns with a given job description.
+ApplyGPT is your personal AI copilot for job applications. Match resumes to job descriptions using keyword + semantic similarity, generate bullet points using LLMs, and even scrape job listings in real time!
 
 ---
 
-## 🚀 Features
+## 🌟 Core Features (v1.0)
 
 - 📤 Upload `.docx` resume
 - 📋 Paste any job description (JD)
 - 🔍 Dual scoring:
-  - **Keyword Score**: Matches explicit tech skills
-  - **Semantic Score**: Captures meaning/context using `all-MiniLM-L6-v2`
-- 📊 Combined results with skill breakdown
-- 📚 Match history (stored per session)
-- 📥 Download match history as CSV
-- ⚡ Fast UI with model caching
+  - ✅ **Keyword Score** – based on hard skill matches
+  - 🧠 **Semantic Score** – powered by `SentenceTransformer`
+- 📊 Real-time score display (0–10 scale)
+- 📚 Match history (session-based)
+- 📥 Export match history as CSV
+- ⚡ Fast, reactive UI with model caching
 
 ---
 
-## 🧠 How It Works
+## 🧠 How Matching Works
 
 1. Resume and JD are parsed into plain text
-2. Keyword matcher extracts predefined tech skills
-3. Semantic scorer encodes both texts via `SentenceTransformer`
-4. Results are scored from 0–10 and shown in real-time
+2. Tech skills are extracted using predefined list
+3. Semantic similarity is calculated with `all-MiniLM-L6-v2`
+4. Both scores displayed with detailed feedback
 
 ---
 
-## 📂 Project Structure
+## 🗂️ Project Structure
+
+```
 applygpt/
 ├── app.py
 ├── README.md
 ├── requirements.txt
 ├── utils/
 │   ├── parser.py
-│   └── matcher.py
-├── assets/                # (optional for screenshots or logos)
+│   ├── matcher.py
+│   └── llm_handler.py
+├── data/
+│   └── jobs_sample.json
+├── assets/                # (screenshots/logos)
 │   └── preview.png
-├── .streamlit/            # (only if customizing theme)
+├── .streamlit/            # (theme/secrets config)
 │   └── config.toml
+```
 
 ---
 
-## 🛠 Installation
+## 🛠 Installation Guide
 
 ```bash
-# Clone the repo
+# 1. Clone the repo
 git clone https://github.com/SamAyala-1301/ApplyGPT.git
 cd applygpt
 
-# Create and activate virtual environment
+# 2. Setup virtual environment
 python3 -m venv applygpt-venv
 source applygpt-venv/bin/activate
 
-# Install dependencies
+# 3. Install dependencies
 pip install -r requirements.txt
 
-# Run the app
+# 4. Run the app
 streamlit run app.py
+```
 
-📄 License
+---
+
+## 📘 Version Info
+
+**This is v1.0** — Initial MVP with resume/JD scoring and match history export.
+
+---
+
+# 🚀 ApplyGPT v2.0 — LLMs, Job Scraping & Resume Generation
+
+ApplyGPT v2 brings massive upgrades, making it a smarter, more production-ready tool.
+
+---
+
+## 🔄 What’s New in v2.0
+
+### 🧠 2.1 — LLM-Powered Resume Suggestions
+- ✍️ Generate bullet points tailored to any JD
+- 🧠 Uses **LLaMA 3 (local)** and **Mistral (via HF API)**
+- 📦 Bulk resume generation for all scraped roles
+
+### 📂 2.2 — Multi-format Resume Support
+- Accepts `.docx`, `.pdf`, `.txt`
+- Uses `docx2txt`, `PyMuPDF`, and `python-docx` parsers
+
+### 🧮 2.3 — Dual Match Modes
+- 📋 Manual JD input
+- 🗂 Bulk match against scraped job list
+- 🔄 Toggle between both in-app
+
+### 🛠️ 2.4 — Smart Suggestions UX
+- 🎯 Filter top-matched roles
+- 🧵 Multi-select and log LLM suggestions
+- 📜 Full prompt + response log included
+
+### 🌐 2.5 — Real-Time Job Scraping
+- 🔎 Fetch jobs live from **Naukri.com**
+- 🧾 Sidebar-based job search
+- ☁️ JSON upload fallback for scraping issues
+
+### 🤖 2.6 — HuggingFace API Integration
+- Uses `mistralai/Mistral-7B-Instruct-v0.2`
+- 🔐 Token managed via `.env` or Streamlit secrets
+- 💡 Runs on cloud without local GPU
+
+---
+
+## 📦 Ready for Deployment
+
+ApplyGPT v2 can be deployed on:
+- ✅ **Streamlit Cloud**
+- ✅ **Hugging Face Spaces**
+- 🛠️ Render (WIP)
+
+All models, dependencies, and keys are cloud-compatible.
+
+---
+
+## 🧭 Roadmap (v3.0 Preview)
+
+- 🧰 SaaS backend with user accounts
+- 📊 Dashboards + resume logs
+- 📤 Scheduled resume submissions
+- 💬 GPT chat over resume feedback
+
+---
+
+## 📬 Contact
+
+Built by **Sai Sampath Ayalasomayajula**  
+🔗 [LinkedIn](https://www.linkedin.com/in/sampath-ayala/) • ✉️ arg5506@gmail.com
+
+---
+
+## 🪪 License
 
 MIT License
 
-⸻
-
-🔖 Version
-
-This is v1.0 — public MVP version with full UI, scoring engine, and CSV export.
-
-⸻
-
-📬 Contact
-
-Built by Sai Sampath Ayalasomayajula
-
-⸻
-
-
 ---
 
-# 🚀 ApplyGPT v2.0 — Feature Expansion & Intelligence Upgrade
+## 🏷️ Tags
 
-ApplyGPT v2 brings major upgrades across resume matching, LLM integration, and job intelligence features — evolving it into a smarter, more production-ready tool.
-
----
-
-## 🔄 What's New in v2.0
-
-### 🧠 2.1 — LLM-Based Resume Enhancement
-- Integrated **LLaMA-3** (locally) and **Mistral via HuggingFace API**
-- Automatically suggests bullet points tailored to a job description
-- Bulk suggestion for multiple jobs now supported
-
-### 📂 2.2 — Multi-format Resume Upload
-- Support for `.docx`, `.pdf`, and `.txt` files
-- Backend parsing handled by `docx2txt`, `PyMuPDF`, and `python-docx`
-
-### 🔍 2.3 — Enhanced Matching Modes
-- Choose between:
-  - 📋 Manual JD input
-  - 🗃️ Bulk match against all scraped jobs
-- Clean UI toggle implemented
-
-### ✍️ 2.4 — Resume Suggestions + Matching UX
-- 2.4.1: View top matches from scraped roles
-- 2.4.2: Multi-select roles to generate LLM resume lines
-- 2.4.3: Output shown inline with job metadata
-- 2.4.4: Full **prompt + LLM response** log added to session
-
-### 🌐 2.5 — Job Scraping Integration
-- Live Naukri job scraping via `requests + BeautifulSoup`
-- Sidebar input to fetch job postings for any title
-- Fallback to `.json` upload when scraping fails
-- No sample data used unless explicitly uploaded
-
-### 🤖 2.6 — HuggingFace API LLM Integration
-- Uses `mistralai/Mistral-7B-Instruct-v0.2` from HuggingFace
-- API key handled via environment or Streamlit secrets
-- Seamless switch from local model to API deployment mode
-
----
-
-## 📦 Deployment Ready
-
-You can now deploy ApplyGPT v2 to:
-- ✅ Streamlit Cloud
-- ✅ Hugging Face Spaces
-- ✅ Render (coming soon)
-
-All secrets, dependencies, and models are cloud-compatible.
-
----
-
-## 🏁 Next Up (v3.0 Preview)
-
-- 🧰 SaaS-Ready Backend
-- 📈 User accounts + dashboards
-- 📤 Resume submission log + job alerts
-- 💬 GPT chat over resumes + JDs
-
+`#resume-matching` `#LLM` `#streamlit` `#AI` `#career-tools` `#job-search`
