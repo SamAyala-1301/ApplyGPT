@@ -236,11 +236,12 @@ elif selected_job:
     jd_source_text = selected_job["jd"]
     enhance_mode = "job"
 
-if uploaded_file and jd_source_text:
-    st.subheader("✍️ Enhance My Resume")
-    if st.button("Suggest Resume Lines"):
-        with st.spinner("Crafting smart resume lines..."):
-            enhancement_prompt = f"""
+if uploaded_file:
+    if jd_source_text:
+        st.subheader("✍️ Enhance My Resume")
+        if st.button("Suggest Resume Lines"):
+            with st.spinner("Crafting smart resume lines..."):
+                enhancement_prompt = f"""
 You are a helpful resume assistant. Given the following job description, suggest 3 impactful bullet points that I can add to my resume to match this role better.
 
 Make them achievement-driven, specific, and skill-oriented.
@@ -249,17 +250,19 @@ Job Description:
 \"\"\"
 {jd_source_text}
 \"\"\"
-            """.strip()
-            suggestions = query_llm(enhancement_prompt, use_local=False)
-            st.markdown("### ✍️ Suggested Lines:")
-            st.markdown(suggestions)
-            st.code(suggestions, language="markdown")
-            st.session_state.llm_log.append({
-                "Prompt": enhancement_prompt,
-                "LLM Output": suggestions,
-                "Job Title": selected_job["title"] if selected_job else None,
-                "Company": selected_job["company"] if selected_job else None
-            })
+                """.strip()
+                suggestions = query_llm(enhancement_prompt, use_local=False)
+                st.markdown("### ✍️ Suggested Lines:")
+                st.markdown(suggestions)
+                st.code(suggestions, language="markdown")
+                st.session_state.llm_log.append({
+                    "Prompt": enhancement_prompt,
+                    "LLM Output": suggestions,
+                    "Job Title": selected_job["title"] if selected_job else None,
+                    "Company": selected_job["company"] if selected_job else None
+                })
+    else:
+        st.info("Paste a job description or select a job from the list to enable suggestions.")
 
 with st.expander("🧠 Prompt + LLM Response Log"):
     if st.session_state.llm_log:
