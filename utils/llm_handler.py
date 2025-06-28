@@ -2,9 +2,9 @@ import os
 import requests
 import json
 
-HF_MODEL = "mistralai/Mistral-7B-Instruct-v0.2"
+OPENROUTER_MODEL = "mistralai/mistral-7b-instruct"
 
-# Local LLaMA 3 via Ollama
+# Local LLaMA 3 via Ollama (if enabled)
 def query_llama_local(prompt: str) -> str:
     try:
         response = requests.post(
@@ -22,44 +22,42 @@ def query_llama_local(prompt: str) -> str:
     except Exception as e:
         return f"Local LLaMA error: {e}"
 
-# Hugging Face Fallback (Mistral 7B Instruct)
-def query_llama_hf(prompt: str, hf_token: str) -> str:
-    url = f"https://api-inference.huggingface.co/models/{HF_MODEL}"
-    headers = {"Authorization": f"Bearer {hf_token}"}
+# OpenRouter API for Mistral 7B
+def query_llama_openrouter(prompt: str, api_key: str) -> str:
+    url = "https://openrouter.ai/api/v1/chat/completions"
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json"
+    }
     payload = {
-        "inputs": f"<s>[INST] {prompt} [/INST]",
-        "parameters": {"max_new_tokens": 300, "return_full_text": False}
+        "model": OPENROUTER_MODEL,
+        "messages": [{"role": "user", "content": prompt}],
+        "max_tokens": 300,
+        "temperature": 0.7
     }
 
     try:
         response = requests.post(url, headers=headers, json=payload)
         if response.status_code == 200:
             result = response.json()
-            # Handle if it's a list of dicts
-            if isinstance(result, list):
-                return result[0].get("generated_text") or result[0].get("text", "⚠️ No response text.")
-            elif isinstance(result, dict) and "generated_text" in result:
-                return result["generated_text"]
-            else:
-                return f"⚠️ Unexpected response format: {result}"
+            return result["choices"][0]["message"]["content"].strip()
         else:
-            return f"HF API Error {response.status_code}: {response.text}"
+            return f"OpenRouter API Error {response.status_code}: {response.text}"
     except Exception as e:
-        return f"HF API request failed: {e}"
+        return f"OpenRouter API request failed: {e}"
 
-# Unified Handler
+# Unified handler for both local + OpenRouter
 def query_llm(prompt: str, use_local=True) -> str:
     if use_local:
         return query_llama_local(prompt)
     else:
-        # First check Streamlit secrets (for Streamlit Cloud)
         try:
             import streamlit as st
-            api_key = st.secrets.get("HF_API_KEY", "")
+            api_key = st.secrets.get("OPENROUTER_API_KEY", "")
         except Exception:
-            api_key = os.getenv("HF_API_KEY", "")
+            api_key = os.getenv("OPENROUTER_API_KEY", "")
 
         if not api_key:
-            return "❌ HF API token not found. Set it in secrets or env."
+            return "❌ OpenRouter API token not found. Set it in secrets or env."
 
-        return query_llama_hf(prompt, api_key)
+        return query_llama_openrouter(prompt, api_key)
