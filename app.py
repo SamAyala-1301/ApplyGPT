@@ -240,11 +240,11 @@ st.subheader("✍️ Enhance My Resume")
 st.info("🚧 This feature is coming soon. Stay tuned for updates!")
 
 #if uploaded_file:
- #   if jd_source_text:
-  #      st.subheader("✍️ Enhance My Resume")
-   #     if st.button("Suggest Resume Lines"):
-    #        with st.spinner("Crafting smart resume lines..."):
-     #           enhancement_prompt = f"""
+#   if jd_source_text:
+#      st.subheader("✍️ Enhance My Resume")
+#     if st.button("Suggest Resume Lines"):
+#        with st.spinner("Crafting smart resume lines..."):
+#           enhancement_prompt = f"""
 #You are a helpful resume assistant. Given the following job description, suggest 3 impactful bullet points that I can add to my resume to match this role better.
 
 #Make them achievement-driven, specific, and skill-oriented.
